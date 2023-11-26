@@ -1,0 +1,15 @@
+public class Cirurgiao extends Medico implements Emergencia{
+    public Cirurgiao(String nome, int idade, String ocupacao) {
+        super(nome, idade, ocupacao);
+    }
+
+    // Métodos
+    public void cirurgia(){
+        System.out.println(getNome() +" está performando uma cirurgia.");
+    }
+
+    @Override
+    public void emergencia() {
+        System.out.println(getNome() +" foi chamado para uma emergência!");
+    }
+}
