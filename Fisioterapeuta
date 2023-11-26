@@ -1,0 +1,10 @@
+public class Fisioterapeuta extends Medico{
+    public Fisioterapeuta(String nome, int idade, String ocupacao) {
+        super(nome, idade, ocupacao);
+    }
+
+    // Métodos
+    public void fisioterapia(){
+
+    }
+}
