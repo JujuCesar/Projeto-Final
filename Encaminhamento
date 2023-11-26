@@ -1,0 +1,3 @@
+public interface Encaminhamento {
+    public void encaminhamento();
+}
