@@ -1,0 +1,15 @@
+public class Psicologo extends Medico implements Encaminhamento{
+    public Psicologo(String nome, int idade, String ocupacao) {
+        super(nome, idade, ocupacao);
+    }
+
+    // Métodos
+    public void terapia(){
+        System.out.println(getNome() +" está fazendo terapia");
+    }
+
+    @Override
+    public void encaminhamento() {
+        System.out.println(getNome() +" encaminhou um paciente");
+    }
+}
