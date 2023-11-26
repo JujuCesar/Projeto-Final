@@ -1,0 +1,15 @@
+public class Geral extends Medico implements Encaminhamento{
+    public Geral(String nome, int idade, String ocupacao) {
+        super(nome, idade, ocupacao);
+    }
+
+    //Métodos
+    public void diagnostico(){
+        System.out.println(getNome() +" realizou um diagnóstico");
+    }
+
+    @Override
+    public void encaminhamento() {
+        System.out.println(getNome() +" encaminhou um paciente");
+    }
+}
