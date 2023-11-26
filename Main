@@ -1,0 +1,142 @@
+import java.util.Scanner;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+public class Main {
+
+    public static void main(String[] args) throws IOException {
+
+        Hospital hospital = new Hospital("Hospital");
+
+        // Menu
+        Scanner in = new Scanner(System.in);
+
+        boolean flag = true;
+
+        System.out.println("Bem vindo ao menu do Hospital");
+
+
+        while(flag){
+
+            System.out.println(" ");
+
+
+            System.out.println("1 - Adicionar novo médico");
+            System.out.println("2 - Adicionar novo paciente");
+            System.out.println("3 - Mostrar pacientes e médicos");
+            System.out.println("4 - Exportar arquivo do Hospital");
+            System.out.println("5 - Sair do menu");
+
+            int op;
+            op = in.nextInt();
+
+            switch (op){
+
+                case 1:
+
+                    System.out.println(" ");
+                    System.out.println("Adicionando novo médico");
+                    in.nextLine();
+
+                    System.out.println("Entre com o nome do médico");
+                    String nomemedico = in.nextLine();
+
+                    System.out.println("Entre com a idade do médico");
+                    int idademedico = in.nextInt();
+
+                    System.out.println("Qual a ocupação do médico?");
+                    System.out.println("1 - Geral");
+                    System.out.println("2 - Psicólogo");
+                    System.out.println("3 - Cirurgião");
+                    System.out.println("4 - Fisioterapeuta");
+
+                    // Menu auxiliar
+                    int ip;
+                    ip = in.nextInt();
+
+                    switch (ip){
+
+                        case 1:
+                                Geral geral = new Geral(nomemedico, idademedico, "Geral");
+                                hospital.addMedico(geral);
+                            break;
+
+                        case 2:
+                                Psicologo psico = new Psicologo(nomemedico, idademedico, "Psicólogo");
+                                hospital.addMedico(psico);
+                            break;
+
+                        case 3:
+                                Cirurgiao cirurgiao = new Cirurgiao(nomemedico, idademedico, "Cirurgião");
+                                hospital.addMedico(cirurgiao);
+                            break;
+
+                        case 4:
+                                Fisioterapeuta fisioterapeuta = new Fisioterapeuta(nomemedico, idademedico, "Fisioterapeuta");
+                                hospital.addMedico(fisioterapeuta);
+                            break;
+
+                        default:
+                            System.out.println("Por favor, entre com um numero válido.");
+                            break;
+
+                    }
+
+                    break;
+
+
+                case 2:
+
+                    System.out.println("");
+                    System.out.println("Adicionando novo paciente");
+                    in.nextLine();
+
+                    System.out.println("Entre com o nome do paciente");
+                    String nomepaciente = in.nextLine();
+
+                    System.out.println("Entre com a idade do paciente");
+                    int idadepaciente = in.nextInt();
+
+                    in.nextLine();
+                    System.out.println("Entre com o sintoma do paciente");
+                    String sintoma = in.nextLine();
+
+                    Paciente paciente = new Paciente(nomepaciente, idadepaciente, sintoma);
+                    hospital.addPaciente(paciente);
+
+                    break;
+
+
+                case 3:
+
+                    hospital.mostraInfo();
+
+                    break;
+
+
+                case 4:
+
+                    hospital.passaInfo();
+
+                    break;
+
+                case 5:
+                    flag = false;
+                    System.out.println("");
+                    System.out.println("Menu finalizado");
+                    System.out.println("");
+                    break;
+
+                default:
+                    System.out.println("Por favor, entre com um numero válido.");
+                    break;
+            }
+
+    }
+
+}}
