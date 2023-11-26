@@ -1,0 +1,123 @@
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
+
+public class Hospital {
+
+    // Atributos
+    private String nome;
+
+    // Construtor
+    public Hospital(String nome) {
+        this.nome = nome;
+    }
+
+    // Arrays
+    List <Paciente> listapaciente= new ArrayList<>();
+
+    List <Medico> listamedico = new ArrayList<>();
+
+
+    // Métodos
+
+    public void mostraInfo(){
+
+        System.out.println("");
+        System.out.println("Médicos: ");
+
+        for (int i = 0; i < listamedico.size(); i++) {
+
+            System.out.println("");
+            System.out.println("Nome: " +listamedico.get(i).getNome());
+            System.out.println("Ocupação: " +listamedico.get(i).getOcupacao());
+        }
+
+        System.out.println("");
+        System.out.println("Pacientes: ");
+
+        for (int i = 0; i < listapaciente.size(); i++) {
+
+            System.out.println("");
+            System.out.println("Nome: " +listapaciente.get(i).getNome());
+            System.out.println("Sintoma: " +listapaciente.get(i).getSintoma());
+
+        }
+
+    }
+
+    public void addPaciente (Paciente p){
+
+                listapaciente.add(p);
+                System.out.println("Paciente adicionado ao Hospital");
+
+    }
+
+    public void addMedico (Medico m){
+
+                listamedico.add(m);
+                System.out.println("Médico adicionado ao Hospital");
+
+
+    }
+
+    public void passaInfo() throws IOException {
+
+
+        //Criando o arquivo
+        Path arquivo = Paths.get("hospital");
+
+
+
+        // Cria lista com as linhas para concatenar
+        List<String> linesToConcatenate = List.of("Line 1", "Line 2", "Line 3");
+
+        // Concatena as linhas
+        String concatenatedLines = String.join(System.lineSeparator(), linesToConcatenate);
+
+        // Escreve no arquivo
+        Files.writeString(arquivo, concatenatedLines);
+
+
+
+        Files.writeString(arquivo,"Pacientes: ");
+
+        //Percorre array de pacientes
+        for (int i = 0; i < listapaciente.size(); i++) {
+
+            try {
+                Files.writeString(arquivo,"Nome: ");
+                Files.writeString(arquivo,listapaciente.get(i).getNome());
+
+                Files.writeString(arquivo,"Sintoma: ");
+                Files.writeString(arquivo, listapaciente.get(i).getSintoma());
+            }
+            catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
+        }
+
+        Files.writeString(arquivo,"Médicos: ");
+
+        // percorre array de medicos
+        for (int i = 0; i < listamedico.size(); i++) {
+
+            try {
+                Files.writeString(arquivo,"Nome: ");
+                Files.writeString(arquivo,listamedico.get(i).getNome());
+
+                Files.writeString(arquivo,"Ocupação: ");
+                Files.writeString(arquivo,listamedico.get(i).getOcupacao());
+            }
+            catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
+        }
+
+    }
+
+}
